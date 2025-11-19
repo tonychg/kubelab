@@ -20,6 +20,7 @@
           kube-capacity
           argocd
           k9s
+          gnumake
         ];
       };
     });
