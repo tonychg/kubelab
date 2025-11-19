@@ -1,0 +1,12 @@
+namespace: metallb-system
+resources:
+  - namespace.yaml
+  - ipaddresspool.yaml
+  - l2advertisement.yaml
+helmCharts:
+  - repo: https://metallb.github.io/metallb
+    name: metallb
+    namespace: metallb-system
+    releaseName: metallb
+    version: 0.15.2
+    includeCRDs: true
