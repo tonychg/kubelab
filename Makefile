@@ -28,5 +28,4 @@ create:
 stop:
 	$(KIND) $(KIND_DELETE_ARG) $(KIND_CLUSTER_ARG)
 
-start:
-	create apply
+start: create apply
