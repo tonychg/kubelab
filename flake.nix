@@ -22,6 +22,7 @@
           k9s
           gnumake
           cilium-cli
+          traceroute
         ];
       };
     });
