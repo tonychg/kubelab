@@ -1,0 +1,10 @@
+helmCharts:
+  - repo: https://helm.cilium.io/
+    version: 1.18.4
+    name: cilium
+    releaseName: cilium
+    namespace: kube-system
+    valuesInline:
+      ipam:
+        pullPolicy: IfNotPresent
+        mode: kubernetes
