@@ -1,0 +1,8 @@
+namespace: default
+resources:
+  - deployment.yaml
+  - httproute.yaml
+  - service.yaml
+  - serviceaccount.yaml
+  - gateway.yaml
+  - gatewayclass.yaml
