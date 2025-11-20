@@ -11,3 +11,8 @@ spec:
     - name: https
       protocol: HTTPS
       port: 443
+  infrastructure:
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: custom-proxy-config
