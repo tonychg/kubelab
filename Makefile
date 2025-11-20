@@ -38,6 +38,9 @@ HELM = helm
 build:
 	$(KUSTOMIZE_BUILD_APPS)
 
+build-controllers:
+	$(KUSTOMIZE_BUILD_CONTROLLERS)
+
 apply-controllers:
 	$(KUSTOMIZE_BUILD_CONTROLLERS) | $(KUBECTL_APPLY)
 	$(KUBECTL_WAIT_READY)
