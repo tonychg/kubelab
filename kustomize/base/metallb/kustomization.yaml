@@ -1,8 +1,6 @@
 namespace: metallb-system
 resources:
   - namespace.yaml
-  - ipaddresspool.yaml
-  - l2advertisement.yaml
 helmCharts:
   - repo: https://metallb.github.io/metallb
     name: metallb

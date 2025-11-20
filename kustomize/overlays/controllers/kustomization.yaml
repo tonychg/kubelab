@@ -1,0 +1,4 @@
+resources:
+  - ../../base/argocd
+  - ../../base/metallb
+  - ../../base/envoy
