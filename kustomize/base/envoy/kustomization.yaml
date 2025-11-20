@@ -7,3 +7,10 @@ helmCharts:
     name: gateway-helm
     releaseName: eg
     includeCRDs: true
+    valuesInline:
+      deployment:
+        replicas: 3
+      config:
+        envoyGateway:
+          extensionApis:
+            enableBackend: true

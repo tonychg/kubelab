@@ -1,0 +1,10 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: passive
+spec:
+  fallback: true
+  endpoints:
+    - fqdn:
+        hostname: backend.default.svc.cluster.local
+        port: 3000

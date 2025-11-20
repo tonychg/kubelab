@@ -3,17 +3,25 @@ kind: HTTPRoute
 metadata:
   name: backend
 spec:
-  parentRefs:
-    - name: eg
   hostnames:
     - "www.example.com"
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: eg
+      namespace: default
   rules:
     - backendRefs:
-        - group: ""
-          kind: Service
-          name: backend
+        - group: gateway.envoyproxy.io
+          kind: Backend
+          name: active
+          namespace: default
           port: 3000
-          weight: 1
+        - group: gateway.envoyproxy.io
+          kind: Backend
+          name: passive
+          namespace: default
+          port: 3000
       matches:
         - path:
             type: PathPrefix

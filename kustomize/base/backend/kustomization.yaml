@@ -6,3 +6,6 @@ resources:
   - serviceaccount.yaml
   - gateway.yaml
   - gatewayclass.yaml
+  - backend-active.yaml
+  - backend-passive.yaml
+  - backendtrafficpolicy.yaml
