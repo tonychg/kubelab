@@ -4,5 +4,5 @@ metadata:
   name: lbnet
 spec:
   addresses:
-    - 172.19.255.1/32
+    - 172.19.255.1-172.19.255.20
   autoAssign: true
