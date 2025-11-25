@@ -1,4 +1,8 @@
 namespace: argocd
 resources:
   - namespace.yaml
-  - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+helmCharts:
+  - repo: oci://ghcr.io/argoproj/argo-helm
+    version: 9.1.4
+    name: argo-cd
+    releaseName: argo-cd

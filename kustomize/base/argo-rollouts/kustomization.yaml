@@ -1,0 +1,8 @@
+namespace: argocd-rollouts
+resources:
+  - namespace.yaml
+helmCharts:
+  - repo: https://argoproj.github.io/argo-helm
+    name: argo-rollouts
+    version: 2.40.5
+    releaseName: argo-rollouts

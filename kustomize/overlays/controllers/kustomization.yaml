@@ -1,3 +1,5 @@
 resources:
   - ../../base/metallb
   - ../../base/envoy
+  - ../../base/argocd
+  - ../../base/argo-rollouts
