@@ -1,0 +1,27 @@
+---
+apiVersion: minio.min.io/v2
+kind: Tenant
+metadata:
+  name: cnpg-backup-bucket
+  namespace: default
+spec:
+  requestAutoCert: false
+  configuration:
+    name: storage-configuration
+  buckets:
+    - name: "cnpg-backup-bucket"
+      region: "eu-west-1"
+      objectLock: false
+  pools:
+    - servers: 1
+      name: pool-0
+      volumesPerServer: 4
+      volumeClaimTemplate:
+        metadata:
+          name: data
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi

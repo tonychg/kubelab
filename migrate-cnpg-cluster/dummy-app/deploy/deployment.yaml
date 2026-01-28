@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-app
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: dummy-app
+  template:
+    metadata:
+      labels:
+        name: dummy-app
+    spec:
+      containers:
+      - name: dummy-app
+        image: k3d-registry:5000/dummy-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+          - name: DATABASE_URL
+            value: postgres://app:changeme@cluster-source-rw:5432/app
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 1
