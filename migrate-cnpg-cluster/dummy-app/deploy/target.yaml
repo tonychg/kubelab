@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dummy-app
-  namespace: default
+  namespace: region-target
 spec:
   replicas: 3
   selector:
@@ -22,7 +22,7 @@ spec:
         - containerPort: 8080
         env:
           - name: DATABASE_URL
-            value: postgres://app:changeme@cluster-source-rw:5432/app
+            value: postgres://app:changeme@cluster-target-rw:5432/app
         livenessProbe:
           httpGet:
             path: /health

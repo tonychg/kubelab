@@ -2,8 +2,8 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cluster-source
-  namespace: region-source
+  name: cluster-target
+  namespace: region-target
 spec:
   instances: 2
   imageName: ghcr.io/cloudnative-pg/postgresql:17
@@ -12,14 +12,11 @@ spec:
   storage:
     size: 10Gi
   bootstrap:
-    initdb:
-      database: app
-      owner: app
-      secret:
-        name: postgres-credentials
+    recovery:
+      source: cluster-source
   replica:
     primary: cluster-source
-    source: cluster-target
+    source: cluster-source
   externalClusters:
     - name: cluster-source
       plugin:

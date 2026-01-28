@@ -1,0 +1,19 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: cnpg-backup-bucket
+  namespace: region-source
+spec:
+  configuration:
+    endpointURL: http://minio.default.svc.cluster.local
+    destinationPath: s3://cnpg-backup-bucket
+    s3Credentials:
+      accessKeyId:
+        key: accessKeyId
+        name: s3-credentials
+      secretAccessKey:
+        key: secretAccessKey
+        name: s3-credentials
+    wal:
+      compression: bzip2
+      maxParallel: 8

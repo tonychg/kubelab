@@ -9,20 +9,29 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	var name string
+	var count int32
 	// urlExample := "postgres://username:password@localhost:5432/database_name"
 	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Printf("Unable to connect to database: %v\n", err)
-		return;
+		return
 	}
 	defer conn.Close(context.Background())
-	err = conn.QueryRow(context.Background(), "SELECT table_name FROM information_schema.tables ORDER BY table_schema,table_name").Scan(&name)
+	_, err = conn.Exec(context.Background(), "create table if not exists pings (status varchar(255), ts timestamp default now())")
+	if err != nil {
+		log.Println("Failed to create table", err)
+		return
+	}
+	_, err = conn.Exec(context.Background(), "insert into pings (status) values ('ok')")
+	if err != nil {
+		log.Println("Failed to insert into table", err)
+		return
+	}
+	err = conn.QueryRow(context.Background(), "select count(status) from pings").Scan(&count)
 	if err != nil {
 		log.Println("Failed", err)
-		return;
 	}
-	log.Println("OK")
+	log.Printf("Number of rows: %d\n", count)
 }
 
 func main() {
